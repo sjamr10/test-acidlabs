@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { simpleAction } from '../../actions/simpleAction';
 import './App.css';
+import Map from '../Map/Map.js';
 
 class App extends Component {
   simpleAction = (event) => {
@@ -11,14 +12,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <pre>
-          {
-            JSON.stringify(this.props)
-          }
-        </pre>
         <header className="App-header">
-          <button onClick={this.simpleAction}>Test redux action</button>
         </header>
+        <Map />
       </div>
     );
   }
