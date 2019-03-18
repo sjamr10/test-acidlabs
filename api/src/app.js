@@ -5,11 +5,10 @@ const logger = require('koa-logger');
 const app = new Koa();
 const router = new Router();
 
-app.use(logger());
+const routes = require('./routes');
+routes({ router });
 
-router.get('/', (ctx, next) => {
-  ctx.body = 'Hello World!';
-});
+app.use(logger());
 
 app.use(router.routes());
 app.use(router.allowedMethods());
