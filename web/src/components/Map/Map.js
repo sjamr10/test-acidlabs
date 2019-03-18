@@ -3,10 +3,22 @@ import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import { simpleAction } from '../../actions/simpleAction';
 import './Map.css';
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import Modal from '../Modal/Modal.js';
 
 class Map extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      lat: 0,
+      lng: 0,
+      isOpen: false,
+      country: '',
+      city: '',
+      temperature: ''
+    };
+  }
+
   static defaultProps = {
     apiKey: "AIzaSyDqEH306foj-4rDZ5c0NtP_F5KH-B3UN3E",
     center: {
@@ -28,8 +40,14 @@ class Map extends Component {
     this.props.simpleAction();
    }
 
+  onClick = ({lat, lng}) => {
+    // TODO: Call API
+    this.setState({ lat, lng, isOpen: true });
+  };
+
   render() {
     const { apiKey, center, zoom, options } = this.props;
+    const { lat, lng, isOpen, country, city, temperature } = this.state;
 
     return (
       <div className="Map" style={{ height: '90vh', width: '100%' }}>
@@ -38,11 +56,15 @@ class Map extends Component {
           defaultCenter={center}
           defaultZoom={zoom}
           options={options}
+          onClick={this.onClick}
         >
-          <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
+          <Modal
+            lat={lat}
+            lng={lng}
+            isOpen={isOpen}
+            country={country}
+            city={city}
+            temperature={temperature}
           />
         </GoogleMapReact>
       </div>

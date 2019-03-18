@@ -1,0 +1,16 @@
+.Modal {
+  width: 120px;
+  height: 100px;
+  background: #f6f8fa;
+  text-align: left;
+  border-radius: 5%;
+  padding: 5px;
+}
+
+.hide {
+  display: none;
+}
+
+.data {
+  font-size: 20px;
+}
