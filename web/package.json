@@ -14,7 +14,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker:build-dev": "docker build -f ./docker/dev/Dockerfile -t $npm_package_name:dev .",
+    "docker:dev": "docker run --rm --name $npm_package_name --net mybridge -it -p 3001:3000 -v `pwd`/src/:/usr/src/app/src/ $npm_package_name:dev",
+    "docker:build-prod": "docker build -f ./docker/prod/Dockerfile -t $npm_package_name:prod .",
+    "docker:prod": "docker run --rm --name $npm_package_name --net mybridge -it -p 3002:80 $npm_package_name:prod"
   },
   "eslintConfig": {
     "extends": "react-app"
