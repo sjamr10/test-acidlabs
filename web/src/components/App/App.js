@@ -13,6 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          Acid Labs Test
         </header>
         <Map />
       </div>
