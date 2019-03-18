@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js",
+    "docker:build": "docker build -t $npm_package_name .",
+    "docker:dev": "docker run --rm --name $npm_package_name --net mybridge -it -p 3003:3000 -v `pwd`/src/:/usr/src/app/src/ $npm_package_name npm run dev",
+    "docker:prod": "docker run --rm --name $npm_package_name --net mybridge -it -p 3004:3000 $npm_package_name"
   },
   "keywords": [],
   "author": "Sergio Miranda",
