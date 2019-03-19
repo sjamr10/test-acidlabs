@@ -5,13 +5,13 @@ client.on("error", function (err) {
   console.log("Error " + err);
 });
 
-const setData = async (country, city, temperature, humidity, windSpeed) => {
-  client.hmset(country, 'city', city, 'temperature', temperature, 'humidity', humidity, 'windSpeed', windSpeed);
+const setData = async (code, city, temperature, humidity, windSpeed) => {
+  client.hmset(code, 'city', city, 'temperature', temperature, 'humidity', humidity, 'windSpeed', windSpeed);
 }
 
-const getData = async (country) => {
+const getData = async (code) => {
   return new Promise((resolve, reject) => {
-    client.hgetall(country, (err, data) => {
+    client.hgetall(code, (err, data) => {
       return resolve(data);
     });
   });

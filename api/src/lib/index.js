@@ -9,8 +9,26 @@ const getCountry = async (coordinates) => {
   const geocodeRequest = axios.create(geocodeConfig);
   const url = `/json?latlng=${coordinates}&key=AIzaSyASGox7MBk1ngDW3M4XUPu3a_FQKNiPlj4`;
   const { data } = await geocodeRequest.get(url);
-  const country = data.results.pop().formatted_address;
-  return country;
+  const country = data.results.pop().address_components.pop().long_name;
+  const code = data.results.pop().address_components.pop().short_name;
+  return {
+    country,
+    code
+  };
+}
+
+const getCapitalCity = async (code) => {
+  const restcountriesConfig = {
+    timeout: 30000,
+    baseURL: 'https://restcountries.eu/rest/v2',
+  };
+  
+  const restcountriesRequest = axios.create(restcountriesConfig);
+  const url = `/all`;
+  const { data } = await restcountriesRequest.get(url);
+  const country = data.find((country) => country.alpha2Code.includes(code));
+  const city = country.capital;
+  return city;
 }
 
 const getWeatherData= async (coordinates) => {
@@ -32,5 +50,6 @@ const getWeatherData= async (coordinates) => {
 
 module.exports = {
   getCountry,
+  getCapitalCity,
   getWeatherData
 };
