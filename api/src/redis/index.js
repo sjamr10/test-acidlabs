@@ -5,8 +5,8 @@ client.on("error", function (err) {
   console.log("Error " + err);
 });
 
-const setData = async (country, city, temperature) => {
-  client.hmset(country, 'city', city, 'temperature', temperature);
+const setData = async (country, city, temperature, humidity, windSpeed) => {
+  client.hmset(country, 'city', city, 'temperature', temperature, 'humidity', humidity, 'windSpeed', windSpeed);
 }
 
 const getData = async (country) => {

@@ -12,7 +12,7 @@ class Modal extends Component {
   }
 
   render() {
-    const { isOpen, loading, country, city, temperature } = this.props;
+    const { isOpen, loading, country, city, temperature, humidity, windSpeed } = this.props;
 
     return (
       <div className={`Modal ${isOpen ? 'show' : 'hide'}`}>
@@ -26,7 +26,9 @@ class Modal extends Component {
             <div>
               <div className="data country">{country}</div>
               <div className="data city">{city}</div>
-              <div className="data temperature">{temperature} ºC</div>
+              <div className="data weather">{temperature} ºC</div>
+              <div className="data weather">{Math.round(humidity * 100)}%</div>
+              <div className="data weather">{windSpeed} km/h</div>
             </div>
         }
       </div>

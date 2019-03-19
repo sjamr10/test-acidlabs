@@ -16,7 +16,9 @@ class Map extends Component {
       isOpen: false,
       country: '',
       city: '',
-      temperature: ''
+      temperature: '',
+      humidity: '',
+      windSpeed: '',
     };
   }
 
@@ -43,13 +45,13 @@ class Map extends Component {
 
   onClick = async ({lat, lng}) => {
     this.setState({ loading: true, lat, lng, isOpen: true });
-    const { country, city, temperature } = await getData(lat + ',' + lng);
-    this.setState({ loading: false, country, city, temperature });
+    const { country, city, temperature, humidity, windSpeed } = await getData(lat + ',' + lng);
+    this.setState({ loading: false, country, city, temperature, humidity, windSpeed });
   };
 
   render() {
     const { apiKey, center, zoom, options } = this.props;
-    const { loading, lat, lng, isOpen, country, city, temperature } = this.state;
+    const { loading, lat, lng, isOpen, country, city, temperature, humidity, windSpeed } = this.state;
 
     return (
       <div className="Map" style={{ height: '90vh', width: '100%' }}>
@@ -68,6 +70,8 @@ class Map extends Component {
             country={country}
             city={city}
             temperature={temperature}
+            humidity={humidity}
+            windSpeed={windSpeed}
           />
         </GoogleMapReact>
       </div>

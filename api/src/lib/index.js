@@ -13,7 +13,7 @@ const getCountry = async (coordinates) => {
   return country;
 }
 
-const getTemperature = async (coordinates) => {
+const getWeatherData= async (coordinates) => {
   const darkskyConfig = {
     timeout: 30000,
     baseURL: 'https://api.darksky.net/forecast/f15600cecfd0b2a2e46f0d159981c3c3',
@@ -22,11 +22,15 @@ const getTemperature = async (coordinates) => {
   const darkskyRequest = axios.create(darkskyConfig);
   const url = `/${coordinates}?units=si`;
   const { data } = await darkskyRequest.get(url);
-  const temperature = data.currently.temperature;
-  return temperature;
+  const { temperature, humidity, windSpeed } = data.currently;
+  return {
+    temperature,
+    humidity,
+    windSpeed
+  };
 }
 
 module.exports = {
   getCountry,
-  getTemperature
+  getWeatherData
 };

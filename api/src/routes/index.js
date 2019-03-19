@@ -10,24 +10,27 @@ module.exports = ({ router }) => {
 
     const data = await redis.getData(country);
 
-    let city, temperature;
+    let city, temperature, humidity, windSpeed;
 
     if (data) {
-      ({ city, temperature } = data);
+      ({ city, temperature, humidity, windSpeed } = data);
     } else {
+      // TODO: Get Capital City
       city = 'Washington D.C.';
       let randomNumber;
       do {
-        temperature = await lib.getTemperature(coordinates);
+        ({ temperature, humidity, windSpeed } = await lib.getWeatherData(coordinates));
         randomNumber = Math.floor(Math.random() * 10);
       } while (randomNumber === 0);
-      redis.setData(country, city, temperature);
+      redis.setData(country, city, temperature, humidity, windSpeed);
     }
 
     ctx.body = {
       country,
       city,
       temperature,
+      humidity,
+      windSpeed,
     };
   });
 
