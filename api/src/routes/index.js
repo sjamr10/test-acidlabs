@@ -1,19 +1,23 @@
 const lib = require('../lib');
+const redis = require('../redis');
 
 module.exports = ({ router }) => {
 
   router.get('/api/weather/:coordinates', async (ctx, next) => {
-    // Get country
     const { country } = await lib.getCountry(ctx.params.coordinates);
 
-    // Query Redis
+    const data = await redis.getData(country);
 
-    const city = 'Santiago';
-    const temperature = '13';
+    let city, temperature;
 
-    // If not in Redis; query Dark Sky and Save to Redis
-
-    // Else send Redis data
+    if (data) {
+      ({ city, temperature } = data);
+    } else {
+      // TODO: Call Dark Sky API
+      city = 'Washington D.C.';
+      temperature = '26';
+      redis.setData(country, city, temperature);
+    }
 
     ctx.body = {
       country,
