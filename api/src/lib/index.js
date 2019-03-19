@@ -13,8 +13,8 @@ const getCountry = async (coordinates) => {
   const geocodeRequest = axios.create(geocodeConfig);
 
   const { data } = await geocodeRequest.get(url);
-
-  const country = data.plus_code.compound_code.split(',').pop().trim();
+  
+  const country = data.results.pop().formatted_address;
 
   return {
     country,
