@@ -4,6 +4,7 @@ import GoogleMapReact from 'google-map-react';
 import { simpleAction } from '../../actions/simpleAction';
 import './Map.css';
 import Modal from '../Modal/Modal.js';
+import getData from '../../api';
 
 class Map extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Map extends Component {
    }
 
   onClick = ({lat, lng}) => {
-    // TODO: Call API
+    getData(lat + ',' + lng);
     this.setState({ lat, lng, isOpen: true });
   };
 
