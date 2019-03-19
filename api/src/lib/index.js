@@ -4,23 +4,29 @@ const getCountry = async (coordinates) => {
   const geocodeConfig = {
     timeout: 30000,
     baseURL: 'https://maps.googleapis.com/maps/api/geocode',
-    rejectUnauthorized: false,
-    strictSSL: false,
   };
   
-  const url = `/json?latlng=${coordinates}&key=AIzaSyASGox7MBk1ngDW3M4XUPu3a_FQKNiPlj4`;
-
   const geocodeRequest = axios.create(geocodeConfig);
-
+  const url = `/json?latlng=${coordinates}&key=AIzaSyASGox7MBk1ngDW3M4XUPu3a_FQKNiPlj4`;
   const { data } = await geocodeRequest.get(url);
-  
   const country = data.results.pop().formatted_address;
+  return country;
+}
 
-  return {
-    country,
+const getTemperature = async (coordinates) => {
+  const darkskyConfig = {
+    timeout: 30000,
+    baseURL: 'https://api.darksky.net/forecast/f15600cecfd0b2a2e46f0d159981c3c3',
   };
+  
+  const darkskyRequest = axios.create(darkskyConfig);
+  const url = `/${coordinates}?units=si`;
+  const { data } = await darkskyRequest.get(url);
+  const temperature = data.currently.temperature;
+  return temperature;
 }
 
 module.exports = {
   getCountry,
+  getTemperature
 };

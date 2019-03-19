@@ -4,7 +4,8 @@ const redis = require('../redis');
 module.exports = ({ router }) => {
 
   router.get('/api/weather/:coordinates', async (ctx, next) => {
-    const { country } = await lib.getCountry(ctx.params.coordinates);
+    const { coordinates } = ctx.params;
+    const country = await lib.getCountry(coordinates);
 
     const data = await redis.getData(country);
 
@@ -13,9 +14,8 @@ module.exports = ({ router }) => {
     if (data) {
       ({ city, temperature } = data);
     } else {
-      // TODO: Call Dark Sky API
       city = 'Washington D.C.';
-      temperature = '26';
+      temperature = await lib.getTemperature(coordinates);
       redis.setData(country, city, temperature);
     }
 
