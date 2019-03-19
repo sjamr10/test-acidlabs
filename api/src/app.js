@@ -10,6 +10,8 @@ routes({ router });
 
 app.use(logger());
 
+require('./middleware')(app);
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(3000);
