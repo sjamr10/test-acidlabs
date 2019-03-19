@@ -44,14 +44,18 @@ class Map extends Component {
    }
 
   onClick = async ({lat, lng}) => {
-    this.setState({ loading: true, lat, lng, isOpen: true });
-    const { country, city, temperature, humidity, windSpeed } = await getData(lat + ',' + lng);
-    this.setState({ loading: false, country, city, temperature, humidity, windSpeed });
+    this.setState({ loading: true, error: null, lat, lng, isOpen: true });
+    try {
+      const { country, city, temperature, humidity, windSpeed } = await getData(lat + ',' + lng);
+      this.setState({ loading: false, country, city, temperature, humidity, windSpeed });
+    } catch (e) {
+      this.setState({ loading: false, error: 'Ha ocurrido un error, por favor inténtelo de nuevo'});
+    }
   };
 
   render() {
     const { apiKey, center, zoom, options } = this.props;
-    const { loading, lat, lng, isOpen, country, city, temperature, humidity, windSpeed } = this.state;
+    const { loading, lat, lng, error, isOpen, country, city, temperature, humidity, windSpeed } = this.state;
 
     return (
       <div className="Map" style={{ height: '90vh', width: '100%' }}>
@@ -65,6 +69,7 @@ class Map extends Component {
           <Modal
             lat={lat}
             lng={lng}
+            error={error}
             isOpen={isOpen}
             loading={loading}
             country={country}
