@@ -41,14 +41,15 @@ class Map extends Component {
     this.props.simpleAction();
    }
 
-  onClick = ({lat, lng}) => {
-    getData(lat + ',' + lng);
-    this.setState({ lat, lng, isOpen: true });
+  onClick = async ({lat, lng}) => {
+    this.setState({ loading: true, lat, lng, isOpen: true });
+    const { country, city, temperature } = await getData(lat + ',' + lng);
+    this.setState({ loading: false, country, city, temperature });
   };
 
   render() {
     const { apiKey, center, zoom, options } = this.props;
-    const { lat, lng, isOpen, country, city, temperature } = this.state;
+    const { loading, lat, lng, isOpen, country, city, temperature } = this.state;
 
     return (
       <div className="Map" style={{ height: '90vh', width: '100%' }}>
@@ -63,6 +64,7 @@ class Map extends Component {
             lat={lat}
             lng={lng}
             isOpen={isOpen}
+            loading={loading}
             country={country}
             city={city}
             temperature={temperature}

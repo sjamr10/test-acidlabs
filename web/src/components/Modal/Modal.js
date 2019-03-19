@@ -7,18 +7,28 @@ class Modal extends Component {
 
     this.state = {
       isOpen: props.isOpen,
-      loading: true,
+      loading: props.loading,
     }
   }
 
   render() {
-    const { country, city, temperature } = this.props;
+    const { isOpen, loading, country, city, temperature } = this.props;
 
     return (
-      <div className={`Modal ${this.props.isOpen ? 'show' : 'hide'}`}>
-        <div className="data country">{country}</div>
-        <div className="data city">{city}</div>
-        <div className="data temperature">{temperature}</div>
+      <div className={`Modal ${isOpen ? 'show' : 'hide'}`}>
+        {
+          loading 
+            ? 
+            <div>
+              <div className="loading" />
+            </div>
+            : 
+            <div>
+              <div className="data country">{country}</div>
+              <div className="data city">{city}</div>
+              <div className="data temperature">{temperature}</div>
+            </div>
+        }
       </div>
     );
   }
