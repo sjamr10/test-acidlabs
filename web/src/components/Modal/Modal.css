@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 140px;
-  height: 150px;
-  background: #f6f8fa;
+  width: 130px;
+  height: 130px;
+  background: #F2F1F1;
   text-align: left;
   border-radius: 5%;
-  padding: 5px;
+  padding: 2px;
 }
 
 .hide {
@@ -16,7 +16,22 @@
 
 .data {
   font-size: 20px;
+  color: #282c34;
   margin-bottom: 6px;
+}
+
+.country {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.city {
+  font-size: 16px;
+}
+
+.temperature {
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .loading {
@@ -32,8 +47,8 @@
   height: 46px;
   margin: 1px;
   border-radius: 50%;
-  border: 5px solid #000;
-  border-color: #000 transparent #000 transparent;
+  border: 5px solid #282c34;
+  border-color: #282c34 transparent #282c34 transparent;
   animation: loading 1.2s linear infinite;
 }
 

@@ -26,7 +26,7 @@ class Modal extends Component {
             <div>
               <div className="data country">{country}</div>
               <div className="data city">{city}</div>
-              <div className="data temperature">{temperature}</div>
+              <div className="data temperature">{temperature} ºC</div>
             </div>
         }
       </div>
