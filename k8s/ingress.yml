@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: weatherapp
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: acidlabsapp.ddns.net
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web
+          servicePort: web
+      - path: /api
+        backend:
+          serviceName: api
+          servicePort: api
