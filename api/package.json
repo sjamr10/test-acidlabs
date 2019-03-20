@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/app.js",
     "start": "node src/app.js",
-    "docker:build": "docker build -t $npm_package_name .",
+    "docker:build": "docker build -t gcr.io/project-33aa1bab-53bd-4/$npm_package_name .",
     "docker:network": "docker network create -d bridge mybridge",
     "docker:redis": "docker run --rm --name redis --net mybridge -d redis",
-    "docker:dev": "docker run --rm --name $npm_package_name --net mybridge -it -p 3003:3000 -v `pwd`/src/:/usr/src/app/src/ $npm_package_name npm run dev",
-    "docker:prod": "docker run --rm --name $npm_package_name --net mybridge -it -p 3004:3000 $npm_package_name"
+    "docker:dev": "docker run --rm --name $npm_package_name --net mybridge -it -p 3003:3000 -v `pwd`/src/:/usr/src/app/src/ gcr.io/project-33aa1bab-53bd-4/$npm_package_name npm run dev",
+    "docker:prod": "docker run --rm --name $npm_package_name --net mybridge -it -p 3004:3000 gcr.io/project-33aa1bab-53bd-4/$npm_package_name"
   },
   "keywords": [],
   "author": "Sergio Miranda",
