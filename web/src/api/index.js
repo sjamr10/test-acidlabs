@@ -3,7 +3,7 @@ const axios = require('axios');
 const getData = async (coordinates) => {
   const apiConfig = {
     timeout: 30000,
-    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3003/api/weather' : 'http://weatherapp.ddns.net/api/weather',
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3003/api/weather' : 'http://acidlabsapp.ddns.net/api/weather',
     rejectUnauthorized: false,
     strictSSL: false,
   };
