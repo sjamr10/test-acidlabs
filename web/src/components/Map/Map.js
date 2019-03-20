@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
-import { simpleAction } from '../../actions/simpleAction';
 import './Map.css';
 import Modal from '../Modal/Modal.js';
 import getData from '../../api';
@@ -38,10 +36,6 @@ class Map extends Component {
       zoomControl: false,
     }
   };
-
-  simpleAction = (event) => {
-    this.props.simpleAction();
-   }
 
   onClick = async ({lat, lng}) => {
     this.setState({ loading: true, error: null, lat, lng, isOpen: true });
@@ -84,10 +78,4 @@ class Map extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    ...state
-  }), 
-  dispatch => ({
-    simpleAction: () => dispatch(simpleAction())
- }))(Map);
+export default Map;
