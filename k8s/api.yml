@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: gcr.io/project-33aa1bab-53bd-4/api:latest
+        image: gcr.io/project-596c7077-3e76-4/api:latest
 ---
 apiVersion: v1
 kind: Service
