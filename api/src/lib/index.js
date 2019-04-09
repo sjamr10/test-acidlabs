@@ -7,7 +7,7 @@ const getCountry = async (coordinates) => {
   };
   
   const geocodeRequest = axios.create(geocodeConfig);
-  const url = `/json?latlng=${coordinates}&key=AIzaSyASGox7MBk1ngDW3M4XUPu3a_FQKNiPlj4`;
+  const url = `/json?latlng=${coordinates}&key=AIzaSyBx_IgSyntfP6DShJRB5ccUJzMcKoDgcjI`;
   const { data } = await geocodeRequest.get(url);
   const country = data.results.pop().address_components.pop().long_name;
   const code = data.results.pop().address_components.pop().short_name;

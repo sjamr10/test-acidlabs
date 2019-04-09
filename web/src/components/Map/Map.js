@@ -21,7 +21,7 @@ class Map extends Component {
   }
 
   static defaultProps = {
-    apiKey: "AIzaSyDqEH306foj-4rDZ5c0NtP_F5KH-B3UN3E",
+    apiKey: "AIzaSyBtsYzJpATx1cxgcRRgwwAE_ALfQeSNaWk",
     center: {
       lat: 0,
       lng: 0,
